@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Pedidos - Terra Cafeteria</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet"
+          th:href="@{/CSS/style.css}">
+
+    <link rel="stylesheet"
+          th:href="@{/CSS/pedidos.css}">
+
+</head>
+
+
+<body>
+
+<!-- CABEÇALHO -->
+<header>
+
+    <nav class="navbar">
+
+        <!-- LOGO -->
+        <div class="logo">
+
+            <span>☕</span>
+
+            <div>
+                <h1>TERRA</h1>
+                <p>CAFETERIA</p>
+            </div>
+
+        </div>
+
+
+        <!-- MENU -->
+        <ul class="menu">
+
+            <li>
+                <a th:href="@{/}">
+                    Início
+                </a>
+            </li>
+
+            <li>
+                <a th:href="@{/produtos}">
+                    Cardápio
+                </a>
+            </li>
+
+            <li>
+                <a th:href="@{/pedidos}">
+                    Pedidos
+                </a>
+            </li>
+
+        </ul>
+
+    </nav>
+
+</header>
+
+
+<!-- CONTEÚDO PRINCIPAL -->
+<main>
+
+    <section class="pedidos-section">
+
+        <div class="pedidos-container">
+
+
+            <!-- CABEÇALHO -->
+            <div class="pedidos-header">
+
+                <p>
+                    ACOMPANHE SEUS PEDIDOS
+                </p>
+
+                <h2>
+                    Meus Pedidos
+                </h2>
+
+                <div class="pedidos-header-divider"></div>
+
+                <p class="pedidos-header-desc">
+                    Acompanhe em tempo real o status de seus pedidos
+                    e receba atualizações sobre a entrega.
+                </p>
+
+            </div>
+
+
+            <!-- FILTROS -->
+            <div class="pedidos-filtros">
+
+                    <span class="filtros-titulo">
+                        🔍 Filtrar Pedidos
+                    </span>
+
+
+                <div class="filtros-grid">
+
+                    <!-- BUSCA -->
+                    <div class="filtro-grupo">
+
+                        <label class="filtro-label">
+                            Buscar por ID ou Cliente
+                        </label>
+
+                        <input type="text"
+                               class="filtro-input"
+                               placeholder="Ex: #001, João Silva">
+
+                    </div>
+
+
+                    <!-- STATUS -->
+                    <div class="filtro-grupo">
+
+                        <label class="filtro-label">
+                            Status
+                        </label>
+
+                        <select class="filtro-select">
+
+                            <option value="">
+                                Todos os Status
+                            </option>
+
+                            <option value="pendente">
+                                Pendente
+                            </option>
+
+                            <option value="confirmado">
+                                Confirmado
+                            </option>
+
+                            <option value="pronto">
+                                Pronto
+                            </option>
+
+                            <option value="entregue">
+                                Entregue
+                            </option>
+
+                            <option value="cancelado">
+                                Cancelado
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- PERÍODO -->
+                    <div class="filtro-grupo">
+
+                        <label class="filtro-label">
+                            Período
+                        </label>
+
+                        <select class="filtro-select">
+
+                            <option value="">
+                                Qualquer Período
+                            </option>
+
+                            <option value="hoje">
+                                Hoje
+                            </option>
+
+                            <option value="semana">
+                                Última Semana
+                            </option>
+
+                            <option value="mes">
+                                Último Mês
+                            </option>
+
+                            <option value="todos">
+                                Todos
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <div class="botoes-filtros">
+
+                    <button class="btn-filtrar">
+                        Filtrar
+                    </button>
+
+                    <button class="btn-limpar">
+                        Limpar Filtros
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- GRID DE PEDIDOS -->
+            <div class="pedidos-grid">
+
+
+                <!--
+                    THYMELEAF
+
+                    O Controller deverá enviar:
+                    model.addAttribute("pedidos", pedidos);
+
+                    O th:each percorre todos os pedidos.
+                -->
+
+                <div class="pedido-card"
+                     th:each="pedido : ${pedidos}">
+
+
+                    <!-- CABEÇALHO DO PEDIDO -->
+                    <div class="pedido-header">
+
+                        <div class="pedido-numero"
+                             th:text="'#' + ${pedido.id}">
+                            #001
+                        </div>
+
+
+                        <span class="pedido-status"
+                              th:classappend="' status-' + ${pedido.status.toLowerCase()}"
+                              th:text="${pedido.status}">
+                                Pronto
+                            </span>
+
+                    </div>
+
+
+                    <!-- CORPO -->
+                    <div class="pedido-body">
+
+
+                        <!-- DATA -->
+                        <div class="pedido-data"
+                             th:text="${pedido.data}">
+                            28 de Setembro de 2026
+                        </div>
+
+
+                        <!-- CLIENTE -->
+                        <div class="pedido-cliente">
+
+                                <span class="pedido-cliente-label">
+                                    Cliente
+                                </span>
+
+                            <div class="pedido-cliente-nome"
+                                 th:text="${pedido.cliente.nome}">
+                                João Silva
+                            </div>
+
+
+                            <div class="pedido-contato">
+
+                                📞
+                                <span th:text="${pedido.cliente.telefone}">
+                                        (11) 98765-4321
+                                    </span>
+
+                                <br>
+
+                                📧
+                                <span th:text="${pedido.cliente.email}">
+                                        joao@email.com
+                                    </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- ITENS -->
+                        <div class="pedido-itens">
+
+                                <span class="pedido-itens-titulo">
+                                    Itens do Pedido
+                                </span>
+
+
+                            <!--
+                                Percorre os itens daquele pedido
+                            -->
+                            <div class="pedido-item"
+                                 th:each="item : ${pedido.itens}">
+
+                                    <span class="pedido-item-nome"
+                                          th:text="${item.nome}">
+                                        Café Expresso
+                                    </span>
+
+
+                                <span class="pedido-item-qtd"
+                                      th:text="'x' + ${item.quantidade}">
+                                        x2
+                                    </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- RODAPÉ DO PEDIDO -->
+                    <div class="pedido-footer">
+
+
+                        <!-- TOTAL -->
+                        <div class="pedido-total">
+
+                                <span class="pedido-total-label">
+                                    Total
+                                </span>
+
+                            <span class="pedido-total-valor"
+                                  th:text="'R$ ' + ${pedido.total}">
+                                    R$ 45,90
+                                </span>
+
+                        </div>
+
+
+                        <!-- BOTÕES -->
+                        <div class="pedido-botoes">
+
+                            <button class="pedido-btn btn-detalhes"
+                                    type="button"
+                                    th:attr="onclick=|abrirDetalhes('${pedido.id}')|">
+
+                                Detalhes
+
+                            </button>
+
+
+                            <button class="pedido-btn btn-editar"
+                                    type="button"
+                                    th:if="${pedido.status != 'Entregue' and pedido.status != 'Cancelado'}">
+
+                                Editar
+
+                            </button>
+
+
+                            <button class="pedido-btn btn-cancelar"
+                                    type="button"
+                                    th:if="${pedido.status != 'Entregue' and pedido.status != 'Cancelado'}">
+
+                                Cancelar
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CASO NÃO EXISTAM PEDIDOS -->
+                <div class="sem-pedidos"
+                     th:if="${#lists.isEmpty(pedidos)}">
+
+                    <p>
+                        Você ainda não possui pedidos.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- RODAPÉ -->
+<footer>
+
+    <h2>
+        TERRA
+    </h2>
+
+    <p>
+        CAFETERIA
+    </p>
+
+    <span>
+            CAFÉ • NATUREZA • EQUILÍBRIO
+        </span>
+
+    <small>
+        © 2026 Terra Cafeteria. Todos os direitos reservados.
+    </small>
+
+</footer>
+
+
+<!-- MODAL DE DETALHES -->
+<div class="modal-overlay"
+     id="modalDetalhes">
+
+    <div class="modal-conteudo">
+
+
+        <!-- CABEÇALHO DO MODAL -->
+        <div class="modal-header">
+
+            <h3 class="modal-title"
+                id="modalTitulo">
+
+                Detalhes do Pedido
+
+            </h3>
+
+
+            <button class="modal-close"
+                    type="button"
+                    onclick="fecharDetalhes()">
+
+                &times;
+
+            </button>
+
+        </div>
+
+
+        <!-- CORPO DO MODAL -->
+        <div class="modal-body">
+
+
+            <!-- CLIENTE -->
+            <div class="detalhes-secao">
+
+                <h4 class="detalhes-secao-titulo">
+                    Informações do Cliente
+                </h4>
+
+
+                <div class="detalhes-item">
+
+                        <span class="detalhes-label">
+                            Nome
+                        </span>
+
+                    <span class="detalhes-valor"
+                          id="detalhesNome">
+                            -
+                        </span>
+
+                </div>
+
+
+                <div class="detalhes-item">
+
+                        <span class="detalhes-label">
+                            Telefone
+                        </span>
+
+                    <span class="detalhes-valor"
+                          id="detalhesTelefone">
+                            -
+                        </span>
+
+                </div>
+
+
+                <div class="detalhes-item">
+
+                        <span class="detalhes-label">
+                            Email
+                        </span>
+
+                    <span class="detalhes-valor"
+                          id="detalhesEmail">
+                            -
+                        </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- PEDIDO -->
+            <div class="detalhes-secao">
+
+                <h4 class="detalhes-secao-titulo">
+                    Informações do Pedido
+                </h4>
+
+
+                <div class="detalhes-item">
+
+                        <span class="detalhes-label">
+                            ID do Pedido
+                        </span>
+
+                    <span class="detalhes-valor"
+                          id="detalhesID">
+                            -
+                        </span>
+
+                </div>
+
+
+                <div class="detalhes-item">
+
+                        <span class="detalhes-label">
+                            Data
+                        </span>
+
+                    <span class="detalhes-valor"
+                          id="detalhesData">
+                            -
+                        </span>
+
+                </div>
+
+
+                <div class="detalhes-item">
+
+                        <span class="detalhes-label">
+                            Status
+                        </span>
+
+                    <span class="detalhes-valor"
+                          id="detalhesStatus">
+                            -
+                        </span>
+
+                </div>
+
+
+                <div class="detalhes-item">
+
+                        <span class="detalhes-label">
+                            Tipo de Entrega
+                        </span>
+
+                    <span class="detalhes-valor">
+                            Retirada no Local
+                        </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- ITENS -->
+            <div class="detalhes-secao">
+
+                <h4 class="detalhes-secao-titulo">
+                    Itens do Pedido
+                </h4>
+
+                <div id="detalhesItens">
+                </div>
+
+            </div>
+
+
+            <!-- RESUMO -->
+            <div class="detalhes-secao">
+
+                <h4 class="detalhes-secao-titulo">
+                    Resumo Financeiro
+                </h4>
+
+
+                <div class="detalhes-item">
+
+                        <span class="detalhes-label">
+                            Subtotal
+                        </span>
+
+                    <span class="detalhes-valor"
+                          id="detalhesSubtotal">
+                            -
+                        </span>
+
+                </div>
+
+
+                <div class="detalhes-item">
+
+                        <span class="detalhes-label">
+                            Taxa de Entrega
+                        </span>
+
+                    <span class="detalhes-valor">
+                            Grátis
+                        </span>
+
+                </div>
+
+
+                <div class="detalhes-item">
+
+                        <span class="detalhes-label"
+                              style="font-weight: bold; font-size: 16px;">
+
+                            TOTAL
+
+                        </span>
+
+
+                    <span class="detalhes-valor"
+                          id="detalhesTotal"
+                          style="font-weight: bold; font-size: 18px; color: #81501f;">
+
+                            -
+
+                        </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- JAVASCRIPT -->
+<script>
+
+    /*
+     * Função para abrir o modal.
+     *
+     * Os dados podem ser enviados futuramente
+     * pelo Spring Boot/Thymeleaf.
+     */
+
+    function abrirDetalhes(pedidoId) {
+
+        const card = document.querySelector(
+            `[data-pedido-id="${pedidoId}"]`
+        );
+
+        document.getElementById(
+            'detalhesID'
+        ).textContent = pedidoId;
+
+        document.getElementById(
+            'modalTitulo'
+        ).textContent =
+            `Detalhes do Pedido #${pedidoId}`;
+
+        document.getElementById(
+            'modalDetalhes'
+        ).classList.add('ativo');
+    }
+
+
+    function fecharDetalhes() {
+
+        document.getElementById(
+            'modalDetalhes'
+        ).classList.remove('ativo');
+
+    }
+
+
+    /*
+     * Fecha o modal ao clicar fora.
+     */
+
+    document.getElementById(
+        'modalDetalhes'
+    ).addEventListener('click', function (event) {
+
+        if (event.target === this) {
+
+            fecharDetalhes();
+
+        }
+
+    });
+
+
+    /*
+     * Fecha o modal com ESC.
+     */
+
+    document.addEventListener(
+        'keydown',
+        function (event) {
+
+            if (event.key === 'Escape') {
+
+                fecharDetalhes();
+
+            }
+
+        }
+    );
+
+</script>
+
+</body>
+
+</html>
+

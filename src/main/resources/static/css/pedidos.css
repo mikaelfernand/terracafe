@@ -1,0 +1,567 @@
+```css
+/* =========================================
+   PÁGINA DE PEDIDOS - TERRA CAFETERIA
+   ========================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f5f1e8;
+    color: #3e2a1c;
+}
+
+/* =========================================
+   CONTEÚDO PRINCIPAL
+   ========================================= */
+
+.pedidos-section {
+    min-height: 100vh;
+    padding: 60px 20px;
+}
+
+.pedidos-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* =========================================
+   CABEÇALHO
+   ========================================= */
+
+.pedidos-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.pedidos-header > p:first-child {
+    color: #81501f;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    margin-bottom: 10px;
+}
+
+.pedidos-header h2 {
+    margin: 0;
+    font-size: 38px;
+    color: #3e2a1c;
+}
+
+.pedidos-header-divider {
+    width: 70px;
+    height: 3px;
+    background-color: #81501f;
+    margin: 18px auto;
+    border-radius: 5px;
+}
+
+.pedidos-header-desc {
+    max-width: 600px;
+    margin: 0 auto;
+    color: #777;
+    line-height: 1.6;
+}
+
+/* =========================================
+   FILTROS
+   ========================================= */
+
+.pedidos-filtros {
+    background-color: white;
+    padding: 25px;
+    border-radius: 15px;
+    margin-bottom: 35px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.filtros-titulo {
+    display: block;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #3e2a1c;
+}
+
+.filtros-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 20px;
+}
+
+.filtro-grupo {
+    display: flex;
+    flex-direction: column;
+}
+
+.filtro-label {
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #5b4636;
+}
+
+.filtro-input,
+.filtro-select {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fafafa;
+    font-size: 14px;
+    color: #3e2a1c;
+    outline: none;
+}
+
+.filtro-input:focus,
+.filtro-select:focus {
+    border-color: #81501f;
+    background-color: white;
+}
+
+.botoes-filtros {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.btn-filtrar,
+.btn-limpar {
+    padding: 11px 22px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn-filtrar {
+    background-color: #81501f;
+    color: white;
+}
+
+.btn-filtrar:hover {
+    background-color: #633b16;
+}
+
+.btn-limpar {
+    background-color: #eee;
+    color: #555;
+}
+
+.btn-limpar:hover {
+    background-color: #ddd;
+}
+
+/* =========================================
+   GRID DE PEDIDOS
+   ========================================= */
+
+.pedidos-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+}
+
+/* =========================================
+   CARD DO PEDIDO
+   ========================================= */
+
+.pedido-card {
+    background-color: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.pedido-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+}
+
+/* =========================================
+   CABEÇALHO DO CARD
+   ========================================= */
+
+.pedido-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 20px;
+    background-color: #faf7f1;
+    border-bottom: 1px solid #eee;
+}
+
+.pedido-numero {
+    font-size: 20px;
+    font-weight: bold;
+    color: #3e2a1c;
+}
+
+.pedido-status {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* =========================================
+   STATUS
+   ========================================= */
+
+.status-pendente {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.status-confirmado {
+    background-color: #dbeafe;
+    color: #1e40af;
+}
+
+.status-pronto {
+    background-color: #dcfce7;
+    color: #166534;
+}
+
+.status-entregue {
+    background-color: #e2e8f0;
+    color: #334155;
+}
+
+.status-cancelado {
+    background-color: #fee2e2;
+    color: #991b1b;
+}
+
+/* =========================================
+   CORPO DO PEDIDO
+   ========================================= */
+
+.pedido-body {
+    padding: 20px;
+}
+
+.pedido-data {
+    color: #888;
+    font-size: 13px;
+    margin-bottom: 18px;
+}
+
+.pedido-cliente {
+    margin-bottom: 20px;
+}
+
+.pedido-cliente-label {
+    display: block;
+    font-size: 12px;
+    color: #999;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+}
+
+.pedido-cliente-nome {
+    font-size: 17px;
+    font-weight: bold;
+    color: #3e2a1c;
+    margin-bottom: 8px;
+}
+
+.pedido-contato {
+    color: #777;
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+/* =========================================
+   ITENS DO PEDIDO
+   ========================================= */
+
+.pedido-itens {
+    border-top: 1px solid #eee;
+    padding-top: 15px;
+}
+
+.pedido-itens-titulo {
+    display: block;
+    font-size: 13px;
+    font-weight: bold;
+    color: #5b4636;
+    margin-bottom: 10px;
+}
+
+.pedido-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 7px 0;
+    color: #555;
+    font-size: 14px;
+}
+
+.pedido-item-qtd {
+    color: #81501f;
+    font-weight: bold;
+}
+
+/* =========================================
+   RODAPÉ DO PEDIDO
+   ========================================= */
+
+.pedido-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    padding: 18px 20px;
+    border-top: 1px solid #eee;
+}
+
+.pedido-total {
+    display: flex;
+    flex-direction: column;
+}
+
+.pedido-total-label {
+    font-size: 12px;
+    color: #999;
+}
+
+.pedido-total-valor {
+    font-size: 20px;
+    font-weight: bold;
+    color: #81501f;
+}
+
+/* =========================================
+   BOTÕES
+   ========================================= */
+
+.pedido-botoes {
+    display: flex;
+    gap: 7px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.pedido-btn {
+    border: none;
+    padding: 9px 13px;
+    border-radius: 7px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn-detalhes {
+    background-color: #81501f;
+    color: white;
+}
+
+.btn-detalhes:hover {
+    background-color: #633b16;
+}
+
+.btn-editar {
+    background-color: #eee;
+    color: #555;
+}
+
+.btn-editar:hover {
+    background-color: #ddd;
+}
+
+.btn-cancelar {
+    background-color: #fee2e2;
+    color: #991b1b;
+}
+
+.btn-cancelar:hover {
+    background-color: #fecaca;
+}
+
+/* =========================================
+   SEM PEDIDOS
+   ========================================= */
+
+.sem-pedidos {
+    grid-column: 1 / -1;
+    text-align: center;
+    background-color: white;
+    padding: 60px 20px;
+    border-radius: 15px;
+    color: #777;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.sem-pedidos p {
+    font-size: 18px;
+}
+
+/* =========================================
+   MODAL
+   ========================================= */
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 9999;
+}
+
+.modal-overlay.ativo {
+    display: flex;
+}
+
+.modal-conteudo {
+    width: 100%;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.25);
+    animation: aparecer 0.25s ease;
+}
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 25px;
+    background-color: #faf7f1;
+    border-bottom: 1px solid #eee;
+}
+
+.modal-title {
+    margin: 0;
+    font-size: 22px;
+    color: #3e2a1c;
+}
+
+.modal-close {
+    border: none;
+    background: none;
+    font-size: 30px;
+    color: #777;
+    cursor: pointer;
+}
+
+.modal-close:hover {
+    color: #81501f;
+}
+
+.modal-body {
+    padding: 25px;
+}
+
+/* =========================================
+   DETALHES DO MODAL
+   ========================================= */
+
+.detalhes-secao {
+    margin-bottom: 25px;
+}
+
+.detalhes-secao-titulo {
+    margin: 0 0 15px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #eee;
+    color: #81501f;
+    font-size: 16px;
+}
+
+.detalhes-item {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 9px 0;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+.detalhes-label {
+    color: #777;
+}
+
+.detalhes-valor {
+    color: #3e2a1c;
+    font-weight: 500;
+    text-align: right;
+}
+
+/* =========================================
+   RESPONSIVIDADE
+   ========================================= */
+
+@media (max-width: 900px) {
+
+    .pedidos-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .filtros-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .pedidos-section {
+        padding: 35px 15px;
+    }
+
+    .pedidos-header h2 {
+        font-size: 30px;
+    }
+
+    .pedidos-filtros {
+        padding: 18px;
+    }
+
+    .pedido-footer {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .pedido-botoes {
+        justify-content: flex-start;
+    }
+
+    .pedido-btn {
+        flex: 1;
+    }
+
+    .modal-body {
+        padding: 18px;
+    }
+
+    .detalhes-item {
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .detalhes-valor {
+        text-align: left;
+    }
+}
+```

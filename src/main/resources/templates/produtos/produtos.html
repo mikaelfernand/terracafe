@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Terra Cafeteria</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet"
+          th:href="@{/CSS/style.css}">
+
+</head>
+
+
+<body>
+
+<!-- CABEÇALHO -->
+<header>
+
+    <nav class="navbar">
+
+        <!-- LOGO -->
+        <div class="logo">
+
+            <span>☕</span>
+
+            <div>
+                <h1>TERRA</h1>
+                <p>CAFETERIA</p>
+            </div>
+
+        </div>
+
+
+        <!-- MENU -->
+        <ul class="menu">
+
+            <li>
+                <a th:href="@{/}">
+                    Início
+                </a>
+            </li>
+
+            <li>
+                <a th:href="@{/produtos}">
+                    Cardápio
+                </a>
+            </li>
+
+            <li>
+                <a th:href="@{/pedidos}">
+                    Pedidos
+                </a>
+            </li>
+
+        </ul>
+
+    </nav>
+
+</header>
+
+
+<!-- CONTEÚDO PRINCIPAL -->
+<main>
+
+    <!-- CARDÁPIO -->
+    <section id="cardapio"
+             class="cardapio">
+
+
+        <!-- TÍTULO -->
+        <div class="titulo">
+
+            <p>
+                CAFÉ • NATUREZA • EQUILÍBRIO
+            </p>
+
+            <h2>
+                Nosso Cardápio
+            </h2>
+
+            <span></span>
+
+        </div>
+
+
+        <!-- PRODUTOS -->
+        <div class="itens-cardapio">
+
+
+            <!-- ESPRESSO -->
+            <article class="item">
+
+                <h3>
+                    Espresso
+                </h3>
+
+                <p>
+                    Café encorpado, intenso e cheio de sabor.
+                </p>
+
+                <strong>
+                    R$ 6,00
+                </strong>
+
+            </article>
+
+
+            <!-- CAPPUCCINO -->
+            <article class="item">
+
+                <h3>
+                    Cappuccino
+                </h3>
+
+                <p>
+                    Café, leite vaporizado e um toque de chocolate.
+                </p>
+
+                <strong>
+                    R$ 9,00
+                </strong>
+
+            </article>
+
+
+            <!-- LATTE -->
+            <article class="item">
+
+                <h3>
+                    Latte
+                </h3>
+
+                <p>
+                    Café suave com leite cremoso e equilibrado.
+                </p>
+
+                <strong>
+                    R$ 10,00
+                </strong>
+
+            </article>
+
+
+            <!-- CHOCOLATE QUENTE -->
+            <article class="item">
+
+                <h3>
+                    Chocolate Quente
+                </h3>
+
+                <p>
+                    Cremoso, na medida certa de doçura.
+                </p>
+
+                <strong>
+                    R$ 12,00
+                </strong>
+
+            </article>
+
+
+            <!-- CROISSANT -->
+            <article class="item">
+
+                <h3>
+                    Croissant
+                </h3>
+
+                <p>
+                    Massa folhada, leve e crocante.
+                </p>
+
+                <strong>
+                    R$ 8,00
+                </strong>
+
+            </article>
+
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- RODAPÉ -->
+<footer>
+
+    <h2>TERRA</h2>
+
+    <p>CAFETERIA</p>
+
+    <span>
+            CAFÉ • NATUREZA • EQUILÍBRIO
+        </span>
+
+    <small>
+        © 2026 Terra Cafeteria. Todos os direitos reservados.
+    </small>
+
+</footer>
+
+
+</body>
+
+</html>

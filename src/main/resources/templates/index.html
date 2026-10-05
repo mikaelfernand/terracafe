@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Terra Cafeteria</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+<!-- CABEÇALHO -->
+<header>
+    <nav class="navbar">
+
+        <div class="logo">
+            <span>☕</span>
+
+            <div>
+                <h1>TERRA</h1>
+                <p>CAFETERIA</p>
+            </div>
+        </div>
+
+        <ul class="menu">
+            <li>
+                <a th:href="@{/}">Início</a>
+            </li>
+
+            <li>
+                <a th:href="@{/produtos}">Cardápio</a>
+            </li>
+
+            <li>
+                <a th:href="@{/pedidos}">Pedidos</a>
+            </li>
+        </ul>
+
+    </nav>
+</header>
+
+
+<!-- CONTEÚDO PRINCIPAL -->
+<main>
+
+    <!-- CARROSSEL -->
+    <section id="inicio" class="carrossel">
+
+        <div class="slide ativo">
+            <img th:src="@{/img/Pão.png}"
+                 alt="Pão da Terra Cafeteria">
+        </div>
+
+        <div class="slide">
+            <img th:src="@{/img/Café.png}"
+                 alt="Café da Terra Cafeteria">
+        </div>
+
+        <div class="slide">
+            <img th:src="@{/img/Chocolatte.png}"
+                 alt="Chocolate quente da Terra Cafeteria">
+        </div>
+
+
+        <!-- Botão anterior -->
+        <button class="anterior"
+                onclick="mudarSlide(-1)">
+            &#10094;
+        </button>
+
+        <!-- Botão próximo -->
+        <button class="proximo"
+                onclick="mudarSlide(1)">
+            &#10095;
+        </button>
+
+
+        <!-- Indicadores -->
+        <div class="indicadores">
+
+                <span class="ponto ativo"
+                      onclick="irParaSlide(0)">
+                </span>
+
+            <span class="ponto"
+                  onclick="irParaSlide(1)">
+                </span>
+
+            <span class="ponto"
+                  onclick="irParaSlide(2)">
+                </span>
+
+        </div>
+
+    </section>
+
+
+    <!-- SOBRE -->
+    <section id="sobre" class="sobre">
+
+        <div>
+
+            <p class="subtitulo">
+                SOBRE A TERRA
+            </p>
+
+            <h2>
+                Um café para desacelerar.
+            </h2>
+
+            <p>
+                Na Terra Cafeteria, acreditamos que um bom café pode
+                transformar pequenos momentos em experiências especiais.
+                Criamos um espaço acolhedor, tranquilo e cheio de sabor
+                para você aproveitar o seu dia.
+            </p>
+
+            <a href="#contato" class="botao">
+                Venha nos visitar
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- CONTATO -->
+    <section id="contato" class="contato">
+
+        <div class="titulo">
+
+            <p>FALE CONOSCO</p>
+
+            <h2>
+                Entre em contato
+            </h2>
+
+        </div>
+
+
+        <div class="informacoes">
+
+            <div>
+                <span>📍</span>
+
+                <h3>
+                    Endereço
+                </h3>
+
+                <p>
+                    Rua do Café, 123
+                </p>
+            </div>
+
+
+            <div>
+                <span>📞</span>
+
+                <h3>
+                    Telefone
+                </h3>
+
+                <p>
+                    (11) 99999-9999
+                </p>
+            </div>
+
+
+            <div>
+                <span>📷</span>
+
+                <h3>
+                    Instagram
+                </h3>
+
+                <p>
+                    @terracafeteria
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- RODAPÉ -->
+<footer>
+
+    <h2>
+        TERRA
+    </h2>
+
+    <p>
+        CAFETERIA
+    </p>
+
+    <span>
+            CAFÉ • NATUREZA • EQUILÍBRIO
+        </span>
+
+    <small>
+        © 2026 Terra Cafeteria. Todos os direitos reservados.
+    </small>
+
+</footer>
+
+
+<!-- JAVASCRIPT DO CARROSSEL -->
+<script>
+
+    let slideAtual = 0;
+
+    const slides = document.querySelectorAll(".slide");
+    const pontos = document.querySelectorAll(".ponto");
+
+
+    function mostrarSlide(numero) {
+
+        slides.forEach(slide => {
+            slide.classList.remove("ativo");
+        });
+
+        pontos.forEach(ponto => {
+            ponto.classList.remove("ativo");
+        });
+
+        slides[numero].classList.add("ativo");
+        pontos[numero].classList.add("ativo");
+
+        slideAtual = numero;
+    }
+
+
+    function mudarSlide(direcao) {
+
+        slideAtual += direcao;
+
+        if (slideAtual >= slides.length) {
+            slideAtual = 0;
+        }
+
+        if (slideAtual < 0) {
+            slideAtual = slides.length - 1;
+        }
+
+        mostrarSlide(slideAtual);
+    }
+
+
+    function irParaSlide(numero) {
+        mostrarSlide(numero);
+    }
+
+
+    // Troca automática
+    setInterval(() => {
+        mudarSlide(1);
+    }, 5000);
+
+</script>
+
+</body>
+
+</html>

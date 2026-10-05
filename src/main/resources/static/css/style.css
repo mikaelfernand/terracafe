@@ -1,0 +1,621 @@
+/* INDEX */
+/* =========================
+   CONFIGURAÇÕES GERAIS
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #eeeadb;
+    color: #303925;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+/* =========================
+   PALETA DA TERRA CAFETERIA
+========================= */
+
+:root {
+    --marrom-escuro: #55300f;
+    --marrom: #81501f;
+    --marrom-claro: #9b7042;
+
+    --creme: #eeeadb;
+    --bege: #c4bea0;
+
+    --verde-claro: #aeb89a;
+    --verde: #7f8b5f;
+    --verde-oliva: #5f6947;
+    --verde-escuro: #303925;
+
+    --branco: #ffffff;
+}
+
+
+/* =========================
+   NAVBAR
+========================= */
+
+header {
+    width: 100%;
+    background-color: var(--creme);
+    border-bottom: 1px solid rgba(48, 57, 37, 0.15);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar {
+    max-width: 1200px;
+    height: 85px;
+    margin: auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 30px;
+}
+
+
+/* LOGO */
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo span {
+    font-size: 35px;
+}
+
+.logo h1 {
+    font-family: Georgia, serif;
+    font-size: 25px;
+    letter-spacing: 6px;
+    color: var(--verde-escuro);
+}
+
+.logo p {
+    font-size: 10px;
+    letter-spacing: 4px;
+    color: var(--marrom);
+    text-align: center;
+}
+
+
+/* MENU */
+
+.menu {
+    list-style: none;
+
+    display: flex;
+    align-items: center;
+    gap: 35px;
+}
+
+.menu a {
+    font-size: 14px;
+    color: var(--verde-escuro);
+    transition: 0.3s;
+}
+
+.menu a:hover {
+    color: var(--marrom);
+}
+
+
+/* =========================
+   CARROSSEL
+========================= */
+
+.carrossel {
+    width: 100%;
+    height: 650px;
+    position: relative;
+    overflow: hidden;
+    background-color: var(--verde-escuro);
+}
+
+.slide {
+    width: 100%;
+    height: 100%;
+
+    position: absolute;
+    inset: 0;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition: opacity 0.8s ease;
+}
+
+.slide.ativo {
+    opacity: 1;
+    visibility: visible;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    display: block;
+}
+
+
+/* ESCURECER A IMAGEM */
+
+.slide::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background: linear-gradient(
+        90deg,
+        rgba(25, 29, 19, 0.75),
+        rgba(25, 29, 19, 0.25),
+        rgba(25, 29, 19, 0.05)
+    );
+}
+
+/* BOTÕES DO CARROSSEL */
+
+.anterior,
+.proximo {
+    position: absolute;
+
+    top: 50%;
+    transform: translateY(-50%);
+
+    z-index: 5;
+
+    width: 45px;
+    height: 45px;
+
+    border: 1px solid rgba(255,255,255,0.6);
+
+    background-color: rgba(48,57,37,0.5);
+
+    color: white;
+
+    border-radius: 50%;
+
+    font-size: 22px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.anterior {
+    left: 25px;
+}
+
+.proximo {
+    right: 25px;
+}
+
+.anterior:hover,
+.proximo:hover {
+    background-color: var(--marrom);
+}
+
+
+/* INDICADORES */
+
+.indicadores {
+    position: absolute;
+
+    z-index: 5;
+
+    bottom: 25px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    display: flex;
+    gap: 10px;
+}
+
+.ponto {
+    width: 10px;
+    height: 10px;
+
+    border-radius: 50%;
+
+    background-color: rgba(255,255,255,0.5);
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.ponto.ativo {
+    width: 30px;
+    border-radius: 10px;
+
+    background-color: white;
+}
+
+/* =========================
+   SOBRE
+========================= */
+
+.sobre {
+    min-height: 500px;
+
+    padding: 100px 10%;
+
+    display: flex;
+    align-items: center;
+
+    background:
+        linear-gradient(
+            rgba(48,57,37,0.85),
+            rgba(48,57,37,0.85)
+        ),
+        url("../img/carrossel3.png");
+
+    background-size: cover;
+    background-position: center;
+
+    color: white;
+}
+
+.sobre > div {
+    max-width: 600px;
+}
+
+.subtitulo {
+    color: var(--bege);
+
+    font-size: 12px;
+
+    letter-spacing: 4px;
+
+    margin-bottom: 20px;
+}
+
+.sobre h2 {
+    font-family: Georgia, serif;
+
+    font-size: 45px;
+
+    margin-bottom: 25px;
+}
+
+.sobre p:not(.subtitulo) {
+    color: #e6e3d7;
+
+    font-size: 17px;
+
+    line-height: 1.8;
+
+    margin-bottom: 30px;
+}
+
+
+/* =========================
+   CONTATO
+========================= */
+
+.contato {
+    padding: 100px 8%;
+
+    background-color: var(--creme);
+}
+
+.informacoes {
+    max-width: 1000px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 30px;
+
+    text-align: center;
+}
+
+.informacoes div {
+    padding: 35px;
+
+    background-color: #f5f1e5;
+
+    border-top: 3px solid var(--verde);
+}
+
+.informacoes span {
+    font-size: 30px;
+
+    display: block;
+
+    margin-bottom: 15px;
+}
+
+.informacoes h3 {
+    font-family: Georgia, serif;
+
+    color: var(--verde-escuro);
+
+    margin-bottom: 10px;
+}
+
+.informacoes p {
+    color: #66685c;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    background-color: var(--verde-escuro);
+
+    color: white;
+
+    text-align: center;
+
+    padding: 60px 20px;
+}
+
+footer h2 {
+    font-family: Georgia, serif;
+
+    letter-spacing: 8px;
+
+    font-size: 30px;
+}
+
+footer p {
+    color: var(--bege);
+
+    font-size: 11px;
+
+    letter-spacing: 4px;
+
+    margin-bottom: 25px;
+}
+
+footer span {
+    display: block;
+
+    color: #c6cbb8;
+
+    font-size: 11px;
+
+    letter-spacing: 3px;
+
+    margin-bottom: 30px;
+}
+
+footer small {
+    color: #9da38d;
+
+    font-size: 11px;
+}
+
+
+
+/* PEDIDOS */
+
+/* =========================
+   CARDÁPIO
+========================= */
+
+.cardapio {
+    padding: 100px 8%;
+
+    background-color: var(--creme);
+}
+
+
+/* TÍTULO */
+
+.titulo {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.titulo p {
+    color: var(--marrom);
+    font-size: 12px;
+    letter-spacing: 4px;
+
+    margin-bottom: 15px;
+}
+
+.titulo h2 {
+    font-family: Georgia, serif;
+
+    font-size: 42px;
+
+    color: var(--verde-escuro);
+
+    margin-bottom: 20px;
+}
+
+.titulo span {
+    display: block;
+
+    width: 60px;
+    height: 2px;
+
+    background-color: var(--marrom);
+
+    margin: auto;
+}
+
+
+/* ITENS */
+
+.itens-cardapio {
+    max-width: 1000px;
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 25px;
+}
+
+.item {
+    padding: 30px;
+
+    background-color: #f5f1e5;
+
+    border-left: 4px solid var(--verde);
+
+    transition: 0.3s;
+}
+
+.item:hover {
+    transform: translateY(-5px);
+
+    box-shadow: 0 10px 25px rgba(48,57,37,0.12);
+}
+
+.item h3 {
+    font-family: Georgia, serif;
+
+    font-size: 22px;
+
+    color: var(--verde-escuro);
+
+    margin-bottom: 10px;
+}
+
+.item p {
+    color: #65675b;
+
+    line-height: 1.6;
+
+    margin-bottom: 15px;
+}
+
+.item strong {
+    color: var(--marrom);
+
+    font-size: 18px;
+}
+
+/* PRODUTOS */
+
+/* =========================
+   RESPONSIVIDADE
+========================= */
+
+@media (max-width: 900px) {
+
+    .menu {
+        gap: 15px;
+    }
+
+    .carrossel {
+        height: 550px;
+    }
+
+    .texto-slide {
+        left: 8%;
+    }
+
+    .texto-slide h2 {
+        font-size: 42px;
+    }
+
+    .itens-cardapio {
+        grid-template-columns: 1fr;
+    }
+
+    .informacoes {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+@media (max-width: 650px) {
+
+    .navbar {
+        height: auto;
+
+        padding: 20px;
+
+        flex-direction: column;
+
+        gap: 20px;
+    }
+
+    .menu {
+        flex-wrap: wrap;
+
+        justify-content: center;
+
+        gap: 18px;
+    }
+
+    .carrossel {
+        height: 550px;
+    }
+
+    .texto-slide {
+        left: 7%;
+        right: 7%;
+    }
+
+    .texto-slide h2 {
+        font-size: 36px;
+    }
+
+    .texto-slide p {
+        font-size: 15px;
+    }
+
+    .anterior,
+    .proximo {
+        width: 38px;
+        height: 38px;
+    }
+
+    .anterior {
+        left: 10px;
+    }
+
+    .proximo {
+        right: 10px;
+    }
+
+    .cardapio,
+    .contato,
+    .sobre {
+        padding: 70px 6%;
+    }
+
+    .titulo h2 {
+        font-size: 34px;
+    }
+
+    .sobre h2 {
+        font-size: 36px;
+    }
+}
